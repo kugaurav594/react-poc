@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { ThemeProvider, useTheme } from './contexts/ThemeContext';
+import HomePage from './pages/HomePage';
+import EventDetailPage from './pages/EventDetailPage';
+import ThemeToggle from './components/ThemeToggle';
+import { Provider } from 'react-redux';
+import store from './redux/store';
 
-function App() {
+const AppWrapper = ({ children }) => {
+  const { state } = useTheme();
+
+  useEffect(() => {
+    document.body.className = state.theme + '-theme';
+  }, [state.theme]);
+
+  return <>{children}</>;
+};
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <ThemeProvider>
+        <Router>
+          <ThemeToggle />
+          <AppWrapper>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/events/:id" element={<EventDetailPage />} />
+            </Routes>
+          </AppWrapper>
+        </Router>
+      </ThemeProvider>
+    </Provider>
   );
-}
+};
 
 export default App;

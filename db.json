@@ -1,0 +1,19 @@
+{
+    "events": [
+      {
+        "id": 1,
+        "title": "Concert",
+        "date": "2024-07-18",
+        "location": "New York",
+        "image": "path/to/image1.jpg"
+      },
+      {
+        "id": 2,
+        "title": "Art Exhibition",
+        "date": "2024-07-20",
+        "location": "Los Angeles",
+        "image": "path/to/image2.jpg"
+      }
+    ]
+  }
+  
