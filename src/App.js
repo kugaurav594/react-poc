@@ -6,6 +6,7 @@ import EventDetailPage from './pages/EventDetailPage';
 import ThemeToggle from './components/ThemeToggle';
 import { Provider } from 'react-redux';
 import store from './redux/store';
+import AddEvent from './components/AddEvent';  // Correct the import path
 
 const AppWrapper = ({ children }) => {
   const { state } = useTheme();
@@ -27,6 +28,7 @@ const App = () => {
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/events/:id" element={<EventDetailPage />} />
+              <Route path="/add-event" element={<AddEvent />} />
             </Routes>
           </AppWrapper>
         </Router>
